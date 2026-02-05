@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nikah Invitation - A Sacred Union</title>
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Nikah Invitation - A Sacred Union">
+    <meta property="og:description" content="You are cordially invited to celebrate the sacred union of our beloved ones">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ivory: #FAF7F0;
+            --emerald: #1B5E3F;
+            --gold: #D4AF37;
+            --beige: #E8DCC4;
+            --charcoal: #2C2C2C;
+            --soft-white: #FFFFFF;
+            --light-emerald: rgba(27, 94, 63, 0.1);
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: var(--ivory);
+            color: var(--charcoal);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Unlock Screen */
+        .unlock-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--emerald) 0%, #0d3a25 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .unlock-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .invitation-card {
+            position: relative;
+            width: 280px;
+            height: 380px;
+            perspective: 1000px;
+            margin-bottom: 40px;
+        }
+
+        .card-front {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, var(--beige) 0%, var(--ivory) 100%);
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: left center;
+        }
+
+        .card-front.opening {
+            transform: rotateY(-180deg);
+        }
+
+        /* Islamic Pattern Overlay */
+        .pattern-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(212, 175, 55, 0.05) 10px, rgba(212, 175, 55, 0.05) 20px),
+                repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(212, 175, 55, 0.05) 10px, rgba(212, 175, 55, 0.05) 20px);
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        .card-ornament {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInScale 1s ease forwards 0.3s;
+        }
+
+        @keyframes fadeInScale {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .card-ornament {
+            transform: scale(0.8);
+        }
+
+        .card-ornament svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        .card-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--emerald);
+            text-align: center;
+            padding: 0 20px;
+            opacity: 0;
+            animation: fadeInScale 1s ease forwards 0.6s;
+            transform: scale(0.8);
+        }
+
+        .unlock-key {
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 8px 16px rgba(212, 175, 55, 0.6));
+            animation: float 3s ease-in-out infinite, pulse 2s ease-in-out infinite;
+        }
+
+        .unlock-key:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .unlock-key.rotating {
+            animation: unlockRotate 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes unlockRotate {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(360deg) scale(1.3);
+            }
+            100% {
+                transform: rotate(720deg) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                filter: drop-shadow(0 8px 16px rgba(212, 175, 55, 0.6));
+            }
+            50% {
+                filter: drop-shadow(0 8px 24px rgba(212, 175, 55, 0.9));
+            }
+        }
+
+        .unlock-text {
+            color: var(--gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            margin-top: 12px;
+            opacity: 0.9;
+            letter-spacing: 2px;
+        }
+
+        /* Particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            opacity: 0;
+            transition: opacity 1s ease;
+            max-width: 100%;
+        }
+
+        .main-content.visible {
+            opacity: 1;
+        }
+
+        /* Section Styling */
+        .section {
+            /* min-height: 100vh; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 24px;
+            position: relative;
+        }
+
+        .section--bismillah {
+            background: linear-gradient(135deg, var(--ivory) 0%, var(--beige) 100%);
+            text-align: center;
+        }
+
+        .bismillah {
+            font-family: 'Amiri', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--emerald);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .bismillah.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .event-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease 0.3s;
+        }
+
+        .event-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .decorative-line {
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 20px auto;
+            opacity: 0;
+            transition: all 0.8s ease 0.6s;
+        }
+
+        .decorative-line.visible {
+            opacity: 1;
+        }
+
+        /* Couple Section */
+        .section--couple {
+            background: var(--soft-white);
+        }
+
+        .couple-container {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .section-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            font-weight: 600;
+            color: var(--emerald);
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            text-align: center;
+        }
+
+        .section-heading.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .couple-names {
+            margin: 40px 0;
+        }
+
+        .name-block {
+            margin: 30px 0;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease;
+        }
+
+        .name-block.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .name-block:nth-child(2) {
+            transform: translateX(30px);
+        }
+
+        .name-block:nth-child(2).visible {
+            transform: translateX(0);
+        }
+
+        .name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 40px;
+            font-weight: 600;
+            color: var(--emerald);
+            margin-bottom: 8px;
+        }
+
+        .family {
+            font-size: 16px;
+            color: var(--charcoal);
+            opacity: 0.8;
+        }
+
+        .ampersand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            color: var(--gold);
+            margin: 20px 0;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s ease 0.3s;
+        }
+
+        .ampersand.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Event Details Section */
+        .section--details {
+            background: var(--light-emerald);
+        }
+
+        .details-container {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .detail-card {
+            background: var(--soft-white);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 20px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .detail-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .detail-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 20px;
+            color: var(--emerald);
+        }
+
+        .detail-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .detail-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--emerald);
+            margin-bottom: 4px;
+        }
+
+        .detail-subvalue {
+            font-size: 16px;
+            color: var(--charcoal);
+            opacity: 0.7;
+        }
+
+        /* Venue Section */
+        .section--venue {
+            background: var(--soft-white);
+        }
+
+        .venue-container {
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Wishes Section */
+        .section--wishes {
+            background: linear-gradient(135deg, var(--beige) 0%, var(--ivory) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section--wishes::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 15px, rgba(27, 94, 63, 0.02) 15px, rgba(27, 94, 63, 0.02) 30px),
+                repeating-linear-gradient(-45deg, transparent, transparent 15px, rgba(212, 175, 55, 0.02) 15px, rgba(212, 175, 55, 0.02) 30px);
+            pointer-events: none;
+        }
+
+        .wishes-container {
+            max-width: 1000px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .wishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .wish-card {
+            background: var(--soft-white);
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wish-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(212, 175, 55, 0.1) 50%,
+                transparent 70%
+            );
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+        }
+
+        .wish-card:hover::before {
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .wish-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .wish-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(27, 94, 63, 0.15);
+            border-color: var(--gold);
+        }
+
+        .wish-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            color: var(--emerald);
+            animation: iconFloat 3s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        .wish-card:nth-child(2) .wish-icon {
+            animation-delay: 0.2s;
+        }
+
+        .wish-card:nth-child(3) .wish-icon {
+            animation-delay: 0.4s;
+        }
+
+        .wish-card:nth-child(4) .wish-icon {
+            animation-delay: 0.6s;
+        }
+
+        .wish-card:nth-child(5) .wish-icon {
+            animation-delay: 0.8s;
+        }
+
+        .wish-card:nth-child(6) .wish-icon {
+            animation-delay: 1s;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-8px) rotate(2deg);
+            }
+            50% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            75% {
+                transform: translateY(-8px) rotate(-2deg);
+            }
+        }
+
+        .wish-icon svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 8px rgba(27, 94, 63, 0.2));
+        }
+
+        .wish-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--emerald);
+            margin-bottom: 12px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .wish-translation {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 8px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .wish-meaning {
+            font-size: 14px;
+            color: var(--charcoal);
+            opacity: 0.8;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Add subtle animation to wishes grid */
+        .wish-card:nth-child(1).visible {
+            transition-delay: 0s;
+        }
+
+        .wish-card:nth-child(2).visible {
+            transition-delay: 0.1s;
+        }
+
+        .wish-card:nth-child(3).visible {
+            transition-delay: 0.2s;
+        }
+
+        .wish-card:nth-child(4).visible {
+            transition-delay: 0.3s;
+        }
+
+        .wish-card:nth-child(5).visible {
+            transition-delay: 0.4s;
+        }
+
+        .wish-card:nth-child(6).visible {
+            transition-delay: 0.5s;
+        }
+
+        /* Venue Section */
+        .venue-container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 30px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .map-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--light-emerald) 0%, var(--beige) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            color: var(--emerald);
+        }
+
+        /* QR Code Section */
+        .qr-section {
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .qr-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .qr-container {
+            background: var(--soft-white);
+            padding: 24px;
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 2px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .qr-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--gold), var(--emerald), var(--gold));
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .qr-container:hover::before {
+            opacity: 0.3;
+            animation: borderGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            position: relative;
+            animation: qrPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes qrPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(27, 94, 63, 0.4);
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 20px 10px rgba(27, 94, 63, 0);
+            }
+        }
+
+        .qr-code canvas,
+        .qr-code img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+        }
+
+        .qr-label {
+            margin-top: 16px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--emerald);
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--emerald);
+            color: var(--soft-white);
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(27, 94, 63, 0.3);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .cta-button.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s ease 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #145033;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(27, 94, 63, 0.4);
+        }
+
+        /* Closing Section */
+        .section--closing {
+            background: linear-gradient(135deg, var(--emerald) 0%, #0d3a25 100%);
+            color: var(--ivory);
+        }
+
+        .closing-container {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .dua {
+            font-family: 'Amiri', serif;
+            font-size: 22px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .dua.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            font-size: 16px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease 0.3s;
+        }
+
+        .contact-info.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-info a {
+            color: var(--gold);
+            text-decoration: none;
+            border-bottom: 1px solid var(--gold);
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .invitation-card {
+                width: 240px;
+                height: 320px;
+            }
+
+            .event-title {
+                font-size: 36px;
+            }
+
+            .name {
+                font-size: 32px;
+            }
+
+            .section {
+                padding: 40px 20px;
+                min-height: auto;
+            }
+
+            .wishes-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .wish-card {
+                padding: 28px 20px;
+            }
+
+            .wish-arabic {
+                font-size: 20px;
+            }
+
+            .wish-translation {
+                font-size: 16px;
+            }
+
+            .qr-code {
+                width: 180px;
+                height: 180px;
+                padding: 12px;
+            }
+
+            .qr-container {
+                padding: 20px;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--ivory);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--emerald);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Unlock Screen -->
+    <div class="unlock-screen" id="unlockScreen">
+        <div class="invitation-card">
+            <div class="card-front" id="cardFront">
+                <div class="pattern-overlay"></div>
+                <div class="card-ornament">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="30" fill="none" stroke="#D4AF37" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="20" fill="none" stroke="#1B5E3F" stroke-width="1.5"/>
+                        <path d="M50 30 L55 35 L50 40 L45 35 Z" fill="#D4AF37"/>
+                        <path d="M50 70 L55 65 L50 60 L45 65 Z" fill="#D4AF37"/>
+                        <path d="M30 50 L35 45 L40 50 L35 55 Z" fill="#1B5E3F"/>
+                        <path d="M70 50 L65 45 L60 50 L65 55 Z" fill="#1B5E3F"/>
+                    </svg>
+                </div>
+                <p class="card-text">You Are Invited</p>
+            </div>
+        </div>
+
+        <svg class="unlock-key" id="unlockKey" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#F4E5B0;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#D4AF37;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#B8941E;stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <circle cx="30" cy="30" r="20" fill="url(#goldGradient)" stroke="#B8941E" stroke-width="2"/>
+            <circle cx="30" cy="30" r="10" fill="none" stroke="#B8941E" stroke-width="2"/>
+            <rect x="45" y="25" width="40" height="10" rx="2" fill="url(#goldGradient)" stroke="#B8941E" stroke-width="2"/>
+            <rect x="65" y="20" width="4" height="8" fill="#B8941E"/>
+            <rect x="72" y="20" width="4" height="8" fill="#B8941E"/>
+            <rect x="79" y="20" width="4" height="12" fill="#B8941E"/>
+        </svg>
+
+        <p class="unlock-text">TAP TO OPEN</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        
+        <!-- Bismillah Section -->
+        <section class="section section--bismillah">
+            <p class="bismillah" data-animate>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br>Bismillah-ir-Rahman-ir-Raheem</p>
+            <h1 class="event-title" data-animate>Nikah Ceremony</h1>
+            <div class="decorative-line" data-animate></div>
+        </section>
+
+        <!-- Couple Section -->
+        <section class="section section--couple">
+            <div class="couple-container">
+                <h2 class="section-heading" data-animate>Together With Their Families</h2>
+                
+                <div class="couple-names">
+                    <div class="name-block" data-animate>
+                        <h3 class="name">Fathima Rifa</h3>
+                    </div>
+                    
+                    <div class="ampersand" data-animate>&</div>
+                    
+                    <div class="name-block" data-animate>
+                        <h3 class="name">Mohammed Irfan</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Details Section -->
+        <section class="section section--details">
+            <div class="details-container">
+                <h2 class="section-heading" data-animate>Event Details</h2>
+                
+                <div class="detail-card" data-animate>
+                    <svg class="detail-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM7 11h5v5H7z"/>
+                    </svg>
+                    <p class="detail-label">Date</p>
+                    <p class="detail-value">Saturday, 5th April 2026</p>
+                    <p class="detail-subvalue">6 Shawwal 1447 AH</p>
+                </div>
+
+                <div class="detail-card" data-animate>
+                    <svg class="detail-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                    </svg>
+                    <p class="detail-label">Time</p>
+                    <p class="detail-value">7:00 PM onwards</p>
+                    <p class="detail-subvalue">Reception to follow</p>
+                </div>
+
+                <div class="detail-card" data-animate>
+                    <svg class="detail-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    <p class="detail-label">Venue</p>
+                    <p class="detail-value">Chittarkottai Small Masjid</p>
+                    <p class="detail-subvalue">Mahal, Chittarkottai</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Venue Section -->
+        <section class="section section--venue">
+            <div class="venue-container">
+                <h2 class="section-heading" data-animate>Find Us Here</h2>
+
+                <div class="qr-section" data-animate>
+                    <div class="qr-container">
+                        <div class="qr-code" id="qrCode"></div>
+                        <p class="qr-label">Scan QR Code for Location</p>
+                    </div>
+                </div>
+
+                <a href="https://maps.app.goo.gl/TRgQPeEh8RRBVJAC8" target="_blank" class="cta-button" data-animate>
+                    <svg style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    Open in Google Maps
+                </a>
+            </div>
+        </section>
+
+        <!-- Islamic Wishes Section -->
+        <section class="section section--wishes">
+            <div class="wishes-container">
+                <h2 class="section-heading" data-animate>Blessings & Prayers</h2>
+                
+                <div class="wishes-grid">
+                    <div class="wish-card" data-animate>
+                        <div class="wish-icon">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M50 20 L55 35 L70 35 L58 45 L63 60 L50 50 L37 60 L42 45 L30 35 L45 35 Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <p class="wish-arabic">بارَكَ اللَّهُ لَكَ</p>
+                        <p class="wish-translation">Barakallahu Laka</p>
+                        <p class="wish-meaning">"May Allah bless you"</p>
+                    </div>
+
+                    <div class="wish-card" data-animate>
+                        <div class="wish-icon">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" stroke-width="3"/>
+                                <path d="M50 30 Q60 50 50 70 Q40 50 50 30" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <p class="wish-arabic">وَبَارَكَ عَلَيْكَ</p>
+                        <p class="wish-translation">Wa Baraka Alayka</p>
+                        <p class="wish-meaning">"And shower His blessings upon you"</p>
+                    </div>
+
+                    <div class="wish-card" data-animate>
+                        <div class="wish-icon">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 50 Q50 30 70 50 Q50 70 30 50" fill="none" stroke="currentColor" stroke-width="3"/>
+                                <circle cx="50" cy="50" r="8" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <p class="wish-arabic">وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
+                        <p class="wish-translation">Wa Jama'a Baynakuma Fi Khayr</p>
+                        <p class="wish-meaning">"And unite you both in goodness"</p>
+                    </div>
+
+                    <div class="wish-card" data-animate>
+                        <div class="wish-icon">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="35" y="35" width="30" height="30" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(45 50 50)"/>
+                                <circle cx="50" cy="50" r="5" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <p class="wish-arabic">اللَّهُمَّ أَلِّفْ بَيْنَ قُلُوبِهِمَا</p>
+                        <p class="wish-translation">Allahumma Allif Bayna Quloobihima</p>
+                        <p class="wish-meaning">"O Allah, unite their hearts"</p>
+                    </div>
+
+                    <div class="wish-card" data-animate>
+                        <div class="wish-icon">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M50 25 L65 50 L50 75 L35 50 Z" fill="none" stroke="currentColor" stroke-width="3"/>
+                                <path d="M50 35 L58 50 L50 65 L42 50 Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <p class="wish-arabic">جَعَلَهَا اللَّهُ حَيَاةً مُبَارَكَةً</p>
+                        <p class="wish-translation">Ja'alaha Allahu Hayatan Mubarakah</p>
+                        <p class="wish-meaning">"May Allah make it a blessed life"</p>
+                    </div>
+
+                    <div class="wish-card" data-animate>
+                        <div class="wish-icon">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="3"/>
+                                <path d="M50 35 L50 50 L60 55" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <p class="wish-arabic">رَزَقَكُمَا اللَّهُ الذُّرِّيَّةَ الصَّالِحَةَ</p>
+                        <p class="wish-translation">Razaqakumallahu Dhurriyyatan Saalihah</p>
+                        <p class="wish-meaning">"May Allah bless you with righteous offspring"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Closing Section -->
+        <section class="section section--closing">
+            <div class="closing-container">
+                <h2 class="section-heading" data-animate style="color: var(--gold);">Your Presence Is Our Blessing</h2>
+                
+                <p class="dua" data-animate>
+                    "And among His signs is that He created for you mates from among yourselves that you may dwell in tranquility with them, and He has put love and mercy between your hearts."<br>
+                    <small style="font-size: 18px; opacity: 0.8;">— Quran 30:21</small>
+                </p>
+
+                <div class="decorative-line" data-animate style="background: linear-gradient(90deg, transparent, var(--gold), transparent);"></div>
+
+                <div class="contact-info" data-animate>
+                    <p style="margin-bottom: 12px;">For RSVP or queries, please contact:</p>
+                    <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+                    <p><a href="mailto:wedding@example.com">wedding@example.com</a></p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        // Unlock Animation
+        const unlockScreen = document.getElementById('unlockScreen');
+        const unlockKey = document.getElementById('unlockKey');
+        const cardFront = document.getElementById('cardFront');
+        const mainContent = document.getElementById('mainContent');
+
+        // Generate QR Code
+        function generateQRCode() {
+            const qrElement = document.getElementById('qrCode');
+            if (qrElement && typeof QRCode !== 'undefined') {
+                new QRCode(qrElement, {
+                    text: 'https://maps.app.goo.gl/TRgQPeEh8RRBVJAC8',
+                    width: 168,
+                    height: 168,
+                    colorDark: '#1B5E3F',
+                    colorLight: '#ffffff',
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }
+        }
+
+        // Initialize QR code after page loads
+        window.addEventListener('load', function() {
+            setTimeout(generateQRCode, 500);
+        });
+
+        unlockKey.addEventListener('click', function() {
+            // Rotate key
+            unlockKey.classList.add('rotating');
+            
+            // Create particles
+            createParticles();
+            
+            // Open card after key rotation
+            setTimeout(() => {
+                cardFront.classList.add('opening');
+            }, 800);
+
+            // Hide unlock screen and show main content
+            setTimeout(() => {
+                unlockScreen.classList.add('hidden');
+                mainContent.classList.add('visible');
+                initScrollAnimations();
+            }, 2300);
+        });
+
+        function createParticles() {
+            const particleCount = 30;
+            const keyRect = unlockKey.getBoundingClientRect();
+            const centerX = keyRect.left + keyRect.width / 2;
+            const centerY = keyRect.top + keyRect.height / 2;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                document.body.appendChild(particle);
+
+                const angle = (Math.PI * 2 * i) / particleCount;
+                const velocity = 100 + Math.random() * 100;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+
+                particle.style.left = centerX + 'px';
+                particle.style.top = centerY + 'px';
+
+                particle.animate([
+                    { transform: 'translate(0, 0)', opacity: 1 },
+                    { transform: `translate(${tx}px, ${ty}px)`, opacity: 0 }
+                ], {
+                    duration: 1000,
+                    easing: 'cubic-bezier(0, 0.5, 0.5, 1)'
+                }).onfinish = () => particle.remove();
+            }
+        }
+
+        // Scroll Animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.2,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('[data-animate]').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
